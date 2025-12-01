@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="SmartBudget">
+        <createTable tableName="RECOMMENDATION">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_RECOMMENDATION"/>
+            </column>
+            <column name="USER_ID_ID" type="UUID"/>
+            <column name="TARGET_ID_ID" type="UUID"/>
+            <column name="DESCRIPTION" type="VARCHAR(255)"/>
+            <column name="CREATE_DATE" type="DATETIME"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="SmartBudget">
+        <createTable tableName="TARGET">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_TARGET"/>
+            </column>
+            <column name="USER_ID_ID" type="UUID"/>
+            <column name="NAME" type="VARCHAR(255)"/>
+            <column name="DESCRIPTION" type="VARCHAR(255)"/>
+            <column name="STATUS" type="VARCHAR(255)"/>
+            <column name="CREATE_DATE" type="DATETIME"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="3" author="SmartBudget">
+        <createIndex indexName="IDX_RECOMMENDATION_TARGET_ID" tableName="RECOMMENDATION">
+            <column name="TARGET_ID_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="TARGET_ID_ID" baseTableName="RECOMMENDATION"
+                                 constraintName="FK_RECOMMENDATION_ON_TARGET_ID" referencedColumnNames="ID"
+                                 referencedTableName="TARGET"/>
+    </changeSet>
+    <changeSet id="4" author="SmartBudget">
+        <createIndex indexName="IDX_RECOMMENDATION_USER_ID" tableName="RECOMMENDATION">
+            <column name="USER_ID_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="USER_ID_ID" baseTableName="RECOMMENDATION"
+                                 constraintName="FK_RECOMMENDATION_ON_USER_ID" referencedColumnNames="ID"
+                                 referencedTableName="USERS"/>
+    </changeSet>
+    <changeSet id="5" author="SmartBudget">
+        <createIndex indexName="IDX_TARGET_USER_ID" tableName="TARGET">
+            <column name="USER_ID_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="USER_ID_ID" baseTableName="TARGET"
+                                 constraintName="FK_TARGET_ON_USER_ID" referencedColumnNames="ID"
+                                 referencedTableName="USERS"/>
+    </changeSet>
+</databaseChangeLog>

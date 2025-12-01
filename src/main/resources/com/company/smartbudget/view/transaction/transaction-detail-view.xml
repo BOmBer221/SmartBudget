@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://transactionDetailView.title"
+      focusComponent="form">
+    <data>
+        <instance id="transactionDc"
+                  class="com.company.smartbudget.entity.Transaction">
+            <fetchPlan extends="_base">
+                <property name="user_id" fetchPlan="_instance_name"/>
+                <property name="catedory_id" fetchPlan="_instance_name"/>
+                <property name="target_id" fetchPlan="_instance_name"/>
+                <property name="account_id" fetchPlan="_instance_name"/>
+            </fetchPlan>
+            <loader id="transactionDl"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <actions>
+        <action id="saveAction" type="detail_saveClose"/>
+        <action id="closeAction" type="detail_close"/>
+    </actions>
+    <layout>
+        <formLayout id="form" dataContainer="transactionDc">
+            <responsiveSteps>
+                <responsiveStep minWidth="0" columns="1"/>
+                <responsiveStep minWidth="40em" columns="2"/>
+            </responsiveSteps>
+            <entityPicker id="user_idField" property="user_id">
+                <actions>
+                    <action id="entityLookupAction" type="entity_lookup"/>
+                    <action id="entityClearAction" type="entity_clear"/>
+                </actions>
+            </entityPicker>
+            <entityPicker id="catedory_idField" property="catedory_id">
+                <actions>
+                    <action id="entityLookupAction" type="entity_lookup"/>
+                    <action id="entityClearAction" type="entity_clear"/>
+                </actions>
+            </entityPicker>
+            <entityPicker id="target_idField" property="target_id">
+                <actions>
+                    <action id="entityLookupAction" type="entity_lookup"/>
+                    <action id="entityClearAction" type="entity_clear"/>
+                </actions>
+            </entityPicker>
+            <entityPicker id="account_idField" property="account_id">
+                <actions>
+                    <action id="entityLookupAction" type="entity_lookup"/>
+                    <action id="entityClearAction" type="entity_clear"/>
+                </actions>
+            </entityPicker>
+            <select id="typeField" property="type"/>
+            <textField id="ammountField" property="ammount"/>
+            <textField id="descriptionField" property="description"/>
+            <dateTimePicker id="dateField" property="date"/>
+        </formLayout>
+        <hbox id="detailActions">
+            <button id="saveAndCloseButton" action="saveAction"/>
+            <button id="closeButton" action="closeAction"/>
+        </hbox>
+    </layout>
+</view>

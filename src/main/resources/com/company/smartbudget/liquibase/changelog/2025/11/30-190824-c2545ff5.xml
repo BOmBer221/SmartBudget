@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="SmartBudget">
+        <addColumn tableName="TRANSACTION_">
+            <column name="ACCOUNT_ID_ID" type="UUID"/>
+            <column name="CATEDORY_ID_ID" type="UUID"/>
+            <column name="TARGET_ID_ID" type="UUID"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="2" author="SmartBudget">
+        <createIndex indexName="IDX_TRANSACTION__CATEDORY_ID" tableName="TRANSACTION_">
+            <column name="CATEDORY_ID_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="CATEDORY_ID_ID" baseTableName="TRANSACTION_"
+                                 constraintName="FK_TRANSACTION__ON_CATEDORY_ID" referencedColumnNames="ID"
+                                 referencedTableName="CATEGORY"/>
+    </changeSet>
+    <changeSet id="3" author="SmartBudget">
+        <addForeignKeyConstraint baseColumnNames="ACCOUNT_ID_ID" baseTableName="TRANSACTION_"
+                                 constraintName="FK_TRANSACTION__ON_ACCOUNT_ID" referencedColumnNames="ID"
+                                 referencedTableName="ACCOUNT"/>
+    </changeSet>
+    <changeSet id="4" author="SmartBudget">
+        <addForeignKeyConstraint baseColumnNames="TARGET_ID_ID" baseTableName="TRANSACTION_"
+                                 constraintName="FK_TRANSACTION__ON_TARGET_ID" referencedColumnNames="ID"
+                                 referencedTableName="TARGET"/>
+    </changeSet>
+    <changeSet id="5" author="SmartBudget">
+        <dropColumn columnName="account_id" tableName="transaction_"/>
+
+        <dropColumn columnName="catedory_id" tableName="transaction_"/>
+
+        <dropColumn columnName="target_id" tableName="transaction_"/>
+    </changeSet>
+</databaseChangeLog>

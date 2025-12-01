@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://jmix.io/schema/flowui/menu">
+
+    <menu id="application" title="msg://com.company.smartbudget/menu.application.title" opened="true">
+        <item view="User.list" title="msg://com.company.smartbudget.view.user/UserListView.title"/>
+        <item view="Transaction_.list"
+              title="msg://com.company.smartbudget.view.transaction/transactionListView.title"/>
+        <item view="Users.list" title="msg://com.company.smartbudget.view.users/usersListView.title"/>
+        <item view="Account.list" title="msg://com.company.smartbudget.view.account/accountListView.title"/>
+        <item view="Target.list" title="msg://com.company.smartbudget.view.target/targetListView.title"/>
+        <item view="Category.list" title="msg://com.company.smartbudget.view.category/categoryListView.title"/>
+    </menu>
+
+</menu-config>

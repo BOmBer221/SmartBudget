@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
+      title="msg://targetListView.title"
+      focusComponent="targetsDataGrid">
+    <data>
+        <collection id="targetsDc"
+                    class="com.company.smartbudget.entity.Target">
+            <fetchPlan extends="_base"/>
+            <loader id="targetsDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from Target e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <urlQueryParameters>
+            <genericFilter component="genericFilter"/>
+            <pagination component="pagination"/>
+        </urlQueryParameters>
+    </facets>
+    <actions>
+        <action id="selectAction" type="lookup_select"/>
+        <action id="discardAction" type="lookup_discard"/>
+    </actions>
+    <layout>
+        <genericFilter id="genericFilter"
+                       dataLoader="targetsDl">
+            <properties include=".*"/>
+        </genericFilter>
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <button id="createButton" action="targetsDataGrid.createAction"/>
+            <button id="editButton" action="targetsDataGrid.editAction"/>
+            <button id="removeButton" action="targetsDataGrid.removeAction"/>
+            <simplePagination id="pagination" dataLoader="targetsDl"/>
+        </hbox>
+        <dataGrid id="targetsDataGrid"
+                  width="100%"
+                  minHeight="20em"
+                  dataContainer="targetsDc"
+                  columnReorderingAllowed="true">
+            <actions>
+                <action id="createAction" type="list_create"/>
+                <action id="editAction" type="list_edit"/>
+                <action id="removeAction" type="list_remove"/>
+            </actions>
+            <columns resizable="true">
+                <column property="name"/>
+                <column property="description"/>
+                <column property="status"/>
+                <column property="createDate"/>
+            </columns>
+        </dataGrid>
+        <hbox id="lookupActions" visible="false">
+            <button id="selectButton" action="selectAction"/>
+            <button id="discardButton" action="discardAction"/>
+        </hbox>
+    </layout>
+</view>
