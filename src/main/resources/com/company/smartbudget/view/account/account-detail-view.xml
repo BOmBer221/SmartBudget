@@ -6,7 +6,7 @@
         <instance id="accountDc"
                   class="com.company.smartbudget.entity.Account">
             <fetchPlan extends="_base">
-                <property name="user_id" fetchPlan="_instance_name"/>
+                <property name="user" fetchPlan="_instance_name"/>
             </fetchPlan>
             <loader id="accountDl"/>
         </instance>

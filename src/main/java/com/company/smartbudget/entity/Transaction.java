@@ -11,8 +11,8 @@ import java.util.UUID;
 @JmixEntity
 @Table(name = "TRANSACTION_", indexes = {
         @Index(name = "IDX_TRANSACTION__USER_ID", columnList = "USER_ID_ID"),
-        @Index(name = "IDX_TRANSACTION__CATEDORY_ID", columnList = "CATEDORY_ID_ID"),
-        @Index(name = "IDX_TRANSACTION__", columnList = "")
+        @Index(name = "IDX_TRANSACTION__TARGET_ID", columnList = "TARGET_ID_ID"),
+        @Index(name = "IDX_TRANSACTION__CATEGORY_ID", columnList = "CATEGORY_ID_ID")
 })
 @Entity(name = "Transaction_")
 public class Transaction {
@@ -21,13 +21,13 @@ public class Transaction {
     @Id
     private UUID id;
 
+    @JoinColumn(name = "CATEGORY_ID_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Category category_id;
+
     @JoinColumn(name = "USER_ID_ID")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Users user_id;
-
-    @JoinColumn(name = "CATEDORY_ID_ID")
-    @OneToOne(fetch = FetchType.LAZY)
-    private Category catedory_id;
+    private User user_id;
 
     @JoinColumn(name = "TARGET_ID_ID")
     @ManyToOne(fetch = FetchType.LAZY)
@@ -50,6 +50,30 @@ public class Transaction {
     @Column(name = "DATE_")
     private LocalDateTime date;
 
+    public Category getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(Category category_id) {
+        this.category_id = category_id;
+    }
+
+    public void setTarget_id(Target target_id) {
+        this.target_id = target_id;
+    }
+
+    public Target getTarget_id() {
+        return target_id;
+    }
+
+    public void setUser_id(User user_id) {
+        this.user_id = user_id;
+    }
+
+    public User getUser_id() {
+        return user_id;
+    }
+
     public void setType(TransactionType type) {
         this.type = type == null ? null : type.getId();
     }
@@ -64,22 +88,6 @@ public class Transaction {
 
     public Account getAccount_id() {
         return account_id;
-    }
-
-    public void setTarget_id(Target target_id) {
-        this.target_id = target_id;
-    }
-
-    public Target getTarget_id() {
-        return target_id;
-    }
-
-    public void setCatedory_id(Category catedory_id) {
-        this.catedory_id = catedory_id;
-    }
-
-    public Category getCatedory_id() {
-        return catedory_id;
     }
 
     public LocalDateTime getDate() {
@@ -104,14 +112,6 @@ public class Transaction {
 
     public void setAmmount(Integer ammount) {
         this.ammount = ammount;
-    }
-
-    public void setUser_id(Users user_id) {
-        this.user_id = user_id;
-    }
-
-    public Users getUser_id() {
-        return user_id;
     }
 
     public UUID getId() {

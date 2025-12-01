@@ -22,7 +22,7 @@ public class Recommendation {
 
     @JoinColumn(name = "USER_ID_ID")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Users user_id;
+    private User user_id;
 
     @JoinColumn(name = "TARGET_ID_ID")
     @ManyToOne(fetch = FetchType.LAZY)
@@ -34,6 +34,14 @@ public class Recommendation {
 
     @Column(name = "CREATE_DATE")
     private LocalDateTime createDate;
+
+    public void setUser_id(User user_id) {
+        this.user_id = user_id;
+    }
+
+    public User getUser_id() {
+        return user_id;
+    }
 
     public LocalDateTime getCreateDate() {
         return createDate;
@@ -57,14 +65,6 @@ public class Recommendation {
 
     public void setTarget_id(Target target_id) {
         this.target_id = target_id;
-    }
-
-    public Users getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(Users user_id) {
-        this.user_id = user_id;
     }
 
     public UUID getId() {

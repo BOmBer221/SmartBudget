@@ -5,20 +5,18 @@ import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import jakarta.persistence.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @JmixEntity
-@Table(name = "ACCOUNT")
+@Table(name = "ACCOUNT", indexes = {
+        @Index(name = "IDX_ACCOUNT_USERS", columnList = "USERS_ID")
+})
 @Entity
 public class Account {
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
     @Id
     private UUID id;
-
-    @OneToMany(mappedBy = "account")
-    private List<Users> user_id;
 
     @InstanceName
     @Column(name = "NAME")
@@ -29,6 +27,18 @@ public class Account {
 
     @Column(name = "BALANCE")
     private Integer balance;
+
+    @JoinColumn(name = "USERS_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
+
+    public void setUser(User users) {
+        this.user = users;
+    }
+
+    public User getUser() {
+        return user;
+    }
 
     public String getName() {
         return name;
@@ -52,14 +62,6 @@ public class Account {
 
     public void setCurrency(String currency) {
         this.currency = currency;
-    }
-
-    public List<Users> getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(List<Users> user_id) {
-        this.user_id = user_id;
     }
 
     public UUID getId() {

@@ -21,7 +21,7 @@ public class Target {
 
     @JoinColumn(name = "USER_ID_ID")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Users user_id;
+    private User user_id;
 
     @InstanceName
     @Column(name = "NAME")
@@ -35,6 +35,14 @@ public class Target {
 
     @Column(name = "CREATE_DATE")
     private LocalDateTime createDate;
+
+    public void setUser_id(User user_id) {
+        this.user_id = user_id;
+    }
+
+    public User getUser_id() {
+        return user_id;
+    }
 
     public void setStatus(TargetStatus status) {
         this.status = status == null ? null : status.getId();
@@ -66,14 +74,6 @@ public class Target {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Users getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(Users user_id) {
-        this.user_id = user_id;
     }
 
     public UUID getId() {

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="SmartBudget">
+        <addColumn tableName="TRANSACTION_">
+            <column name="CATEGORY_ID_ID" type="UUID"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="2" author="SmartBudget">
+        <createIndex indexName="IDX_TRANSACTION__CATEGORY_ID" tableName="TRANSACTION_">
+            <column name="CATEGORY_ID_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="CATEGORY_ID_ID" baseTableName="TRANSACTION_"
+                                 constraintName="FK_TRANSACTION__ON_CATEGORY_ID" referencedColumnNames="ID"
+                                 referencedTableName="CATEGORY"/>
+    </changeSet>
+    <changeSet id="3" author="SmartBudget">
+        <dropTable cascadeConstraints="true" tableName="users"/>
+    </changeSet>
+</databaseChangeLog>

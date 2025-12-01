@@ -8,7 +8,7 @@
                     class="com.company.smartbudget.entity.Transaction">
             <fetchPlan extends="_base">
                 <property name="user_id" fetchPlan="_instance_name"/>
-                <property name="catedory_id" fetchPlan="_instance_name"/>
+                <property name="category_id" fetchPlan="_instance_name"/>
                 <property name="target_id" fetchPlan="_instance_name"/>
                 <property name="account_id" fetchPlan="_instance_name"/>
             </fetchPlan>
@@ -53,7 +53,7 @@
             </actions>
             <columns resizable="true">
                 <column property="user_id"/>
-                <column property="catedory_id"/>
+                <column property="category_id"/>
                 <column property="target_id"/>
                 <column property="account_id"/>
                 <column property="type"/>

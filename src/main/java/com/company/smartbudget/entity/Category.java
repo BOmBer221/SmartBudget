@@ -8,7 +8,9 @@ import jakarta.persistence.*;
 import java.util.UUID;
 
 @JmixEntity
-@Table(name = "CATEGORY")
+@Table(name = "CATEGORY", indexes = {
+        @Index(name = "IDX_CATEGORY_USER_ID", columnList = "USER_ID_ID")
+})
 @Entity
 public class Category {
     @JmixGeneratedValue
@@ -16,19 +18,20 @@ public class Category {
     @Id
     private UUID id;
 
+    @JoinColumn(name = "USER_ID_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user_id;
+
     @InstanceName
     @Column(name = "NAME")
     private String name;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "catedory_id")
-    private Transaction transaction;
-
-    public Transaction getTransaction() {
-        return transaction;
+    public User getUser_id() {
+        return user_id;
     }
 
-    public void setTransaction(Transaction transaction) {
-        this.transaction = transaction;
+    public void setUser_id(User user_id) {
+        this.user_id = user_id;
     }
 
     public String getName() {

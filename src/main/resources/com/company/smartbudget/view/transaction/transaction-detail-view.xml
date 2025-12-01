@@ -7,7 +7,7 @@
                   class="com.company.smartbudget.entity.Transaction">
             <fetchPlan extends="_base">
                 <property name="user_id" fetchPlan="_instance_name"/>
-                <property name="catedory_id" fetchPlan="_instance_name"/>
+                <property name="category_id" fetchPlan="_instance_name"/>
                 <property name="target_id" fetchPlan="_instance_name"/>
                 <property name="account_id" fetchPlan="_instance_name"/>
             </fetchPlan>
@@ -33,7 +33,7 @@
                     <action id="entityClearAction" type="entity_clear"/>
                 </actions>
             </entityPicker>
-            <entityPicker id="catedory_idField" property="catedory_id">
+            <entityPicker id="catedory_idField" property="category_id">
                 <actions>
                     <action id="entityLookupAction" type="entity_lookup"/>
                     <action id="entityClearAction" type="entity_clear"/>
