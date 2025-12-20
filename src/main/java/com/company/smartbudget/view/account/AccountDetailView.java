@@ -23,6 +23,7 @@ public class AccountDetailView extends StandardDetailView<Account> {
         User currentUser = (User) currentAuthentication.getUser();
         // Устанавливаем его в поле user
         account.setUser(currentUser);
+
     }
     
     

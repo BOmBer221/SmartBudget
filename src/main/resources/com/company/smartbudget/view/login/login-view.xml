@@ -16,5 +16,9 @@
                           username="msg://loginForm.errorUsername"
                           password="msg://loginForm.errorPassword"/>
         </loginForm>
+        <button id="registerButton"
+                text="Регистрация"
+
+                themeNames="tertiary-line"/>
     </layout>
 </view>

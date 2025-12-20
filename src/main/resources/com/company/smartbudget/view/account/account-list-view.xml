@@ -19,7 +19,6 @@
     <facets>
         <dataLoadCoordinator auto="true"/>
         <urlQueryParameters>
-            <genericFilter component="genericFilter"/>
             <pagination component="pagination"/>
         </urlQueryParameters>
     </facets>
@@ -28,14 +27,11 @@
         <action id="discardAction" type="lookup_discard"/>
     </actions>
     <layout>
-        <genericFilter id="genericFilter"
-                       dataLoader="accountsDl">
-            <properties include=".*"/>
-        </genericFilter>
+
         <hbox id="buttonsPanel" classNames="buttons-panel">
-            <button id="createButton" action="accountsDataGrid.createAction"/>
-            <button id="editButton" action="accountsDataGrid.editAction"/>
-            <button id="removeButton" action="accountsDataGrid.removeAction"/>
+            <button text="Создать" id="createButton" action="accountsDataGrid.createAction"/>
+            <button text="Редактировать" id="editButton" action="accountsDataGrid.editAction"/>
+            <button text="Удалить" id="removeButton" action="accountsDataGrid.removeAction"/>
             <simplePagination id="pagination" dataLoader="accountsDl"/>
         </hbox>
         <dataGrid id="accountsDataGrid"

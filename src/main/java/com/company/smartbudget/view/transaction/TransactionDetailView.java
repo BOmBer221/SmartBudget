@@ -9,6 +9,8 @@ import io.jmix.core.security.CurrentAuthentication;
 import io.jmix.flowui.view.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDateTime;
+
 @Route(value = "transactions/:id", layout = MainView.class)
 @ViewController(id = "Transaction_.detail")
 @ViewDescriptor(path = "transaction-detail-view.xml")
@@ -24,5 +26,7 @@ public class TransactionDetailView extends StandardDetailView<Transaction> {
         User currentUser = (User) currentAuthentication.getUser();
         // Устанавливаем его в поле user
         transaction.setUser_id(currentUser);
+
+        transaction.setDate(LocalDateTime.now());
     }
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="Регистрация">
+
+    <layout justifyContent="CENTER"
+            alignItems="CENTER"
+            classNames="jmix-login-main-layout">
+        <vbox  id="regForm" >
+            <formLayout alignSelf="CENTER" width="20em">
+
+                <textField id="firstNameField" label="Имя"/>
+                <textField id="lastNameField" label="Фамилия"/>
+                <textField id="emailField" label="Email"/>
+                <textField id="usernameField"
+                           label="Логин"/>
+
+                <passwordField id="passwordField"
+                               label="Пароль"/>
+
+                <button id="registerBtn"
+                        text="Зарегистрироваться"
+                        themeNames="primary"/>
+
+                <button id="backToLoginBtn"
+                        text="Вход"
+                        themeNames="tertiary"/>
+            </formLayout>
+        </vbox>
+    </layout>
+</view>

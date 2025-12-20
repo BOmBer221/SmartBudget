@@ -29,6 +29,6 @@ public interface UserOwnDataRole {
 
     // 5. Только свои рекомендации (если есть связь с User)
     @JpqlRowLevelPolicy(entityClass = Recommendation.class,
-            where = "{E}.user_id = :current_user_id")
+            where = "{E}.user_id.id = :current_user_id")
     void ownRecommendations();
 }

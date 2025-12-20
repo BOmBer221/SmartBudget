@@ -41,7 +41,8 @@ dependencies {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
     testImplementation 'io.jmix.flowui:jmix-flowui-test-assist'
-    implementation 'org.postgresql:postgresql'
+
+    implementation 'org.postgresql:postgresql:42.7.4'
 }
 
 configurations.implementation {

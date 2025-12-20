@@ -8,6 +8,8 @@ import io.jmix.core.security.CurrentAuthentication;
 import io.jmix.flowui.view.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDateTime;
+
 @Route(value = "categories/:id", layout = MainView.class)
 @ViewController(id = "Category.detail")
 @ViewDescriptor(path = "category-detail-view.xml")
@@ -23,5 +25,6 @@ public class CategoryDetailView extends StandardDetailView<Category> {
         User currentUser = (User) currentAuthentication.getUser();
         // Устанавливаем его в поле user
         category.setUser_id(currentUser);
+
     }
 }

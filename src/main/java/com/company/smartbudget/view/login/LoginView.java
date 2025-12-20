@@ -1,5 +1,7 @@
 package com.company.smartbudget.view.login;
 
+import com.company.smartbudget.view.register.RegisterView;
+import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.login.AbstractLogin.LoginEvent;
 import com.vaadin.flow.component.login.LoginI18n;
@@ -10,8 +12,11 @@ import com.vaadin.flow.server.VaadinSession;
 import io.jmix.core.CoreProperties;
 import io.jmix.core.MessageTools;
 import io.jmix.core.security.AccessDeniedException;
+import io.jmix.flowui.UiNavigationProperties;
 import io.jmix.flowui.component.loginform.JmixLoginForm;
+import io.jmix.flowui.kit.action.ActionPerformedEvent;
 import io.jmix.flowui.kit.component.ComponentUtils;
+import io.jmix.flowui.kit.component.button.JmixButton;
 import io.jmix.flowui.kit.component.loginform.JmixLoginI18n;
 import io.jmix.flowui.view.*;
 import io.jmix.securityflowui.authentication.AuthDetails;
@@ -122,4 +127,10 @@ public class LoginView extends StandardView implements LocaleChangeObserver {
 
         login.setI18n(loginI18n);
     }
+
+    @Subscribe(id = "registerButton", subject = "clickListener")
+    public void onRegisterButtonClick(final ClickEvent<JmixButton> event) {
+        UI.getCurrent().navigate(RegisterView.class);
+    }
+
 }

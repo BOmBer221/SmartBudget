@@ -28,8 +28,8 @@
             <dateTimePicker id="createDateField" property="createDate"/>
         </formLayout>
         <hbox id="detailActions">
-            <button id="saveAndCloseButton" action="saveAction"/>
-            <button id="closeButton" action="closeAction"/>
+            <button text="Ок" id="saveAndCloseButton" action="saveAction"/>
+            <button text="Отмена" id="closeButton" action="closeAction"/>
         </hbox>
     </layout>
 </view>
