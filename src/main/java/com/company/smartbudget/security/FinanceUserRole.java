@@ -32,7 +32,7 @@ public interface FinanceUserRole {
     @MenuPolicy(menuIds = {"Transaction_.list", "Account.list", "Target.list", "Category.list", "Recommendation.list"})
     void menus();
 
-    @ViewPolicy(viewIds = {"Transaction_.list", "Account.list", "Target.list", "Category.list", "Account.detail", "Category.detail", "LoginView", "MainView", "Target.detail", "Transaction_.detail", "inputDialog", "multiValueSelectDialog", "flowui_AddConditionView", "flowui_GroupFilterCondition.detail", "flowui_JpqlFilterCondition.detail", "flowui_PropertyFilterCondition.detail", "entityInfoView", "FragmentRenderer", "DataGridEmptyStateByPermissionsFragment", "headerPropertyFilterLayout", "Recommendation.list"})
+    @ViewPolicy(viewIds = {"Transaction_.list", "Account.list", "Target.list", "Category.list", "Account.detail", "Category.detail", "LoginView", "MainView", "Target.detail", "Transaction_.detail", "inputDialog", "multiValueSelectDialog", "flowui_AddConditionView", "flowui_GroupFilterCondition.detail", "flowui_JpqlFilterCondition.detail", "flowui_PropertyFilterCondition.detail", "entityInfoView", "FragmentRenderer", "DataGridEmptyStateByPermissionsFragment", "headerPropertyFilterLayout", "Recommendation.list", "Recommendation.detail"})
     void screens();
 
     @EntityAttributePolicy(entityClass = Category.class, attributes = "*", action = EntityAttributePolicyAction.MODIFY)

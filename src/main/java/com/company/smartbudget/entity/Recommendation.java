@@ -29,7 +29,7 @@ public class Recommendation {
     private Target target_id;
 
     @InstanceName
-    @Column(name = "DESCRIPTION")
+    @Column(name = "DESCRIPTION", length = 2000)
     private String description;
 
     @Column(name = "CREATE_DATE")

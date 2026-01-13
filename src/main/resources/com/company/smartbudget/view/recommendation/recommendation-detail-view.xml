@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://recommendationDetailView.title"
+      focusComponent="form">
+    <data>
+        <instance id="recommendationDc"
+                  class="com.company.smartbudget.entity.Recommendation">
+            <fetchPlan extends="_base">
+                <property name="target_id" fetchPlan="_instance_name">
+                    <property name="description"/>
+                </property>
+            </fetchPlan>
+            <loader id="recommendationDl"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <actions>
+        <action id="saveAction" type="detail_saveClose"/>
+        <action id="closeAction" type="detail_close"/>
+    </actions>
+    <layout>
+        <formLayout id="form" dataContainer="recommendationDc">
+            <responsiveSteps>
+                <responsiveStep minWidth="0" columns="1"/>
+                <responsiveStep minWidth="40em" columns="2"/>
+            </responsiveSteps>
+            <entityPicker label="Цель" id="target_idField" property="target_id">
+                <actions>
+                    <action id="entityLookupAction" type="entity_lookup"/>
+                    <action id="entityClearAction" type="entity_clear"/>
+                </actions>
+            </entityPicker>
+            <textArea label="Рекоммендация ИИ" id="descriptionField" property="description"/>
+            <dateTimePicker label="Дата" id="createDateField" property="createDate"/>
+        </formLayout>
+        <hbox id="detailActions">
+            <button id="saveAndCloseButton" action="saveAction"/>
+        </hbox>
+    </layout>
+</view>

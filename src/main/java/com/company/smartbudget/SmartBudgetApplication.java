@@ -31,25 +31,4 @@ public class SmartBudgetApplication implements AppShellConfigurator {
         SpringApplication.run(SmartBudgetApplication.class, args);
     }
 
-    @Bean
-    @Primary
-    @ConfigurationProperties("main.datasource")
-    DataSourceProperties dataSourceProperties() {
-        return new DataSourceProperties();
-    }
-
-    @Bean
-    @Primary
-    @ConfigurationProperties("main.datasource.hikari")
-    DataSource dataSource(final DataSourceProperties dataSourceProperties) {
-        return dataSourceProperties.initializeDataSourceBuilder().build();
-    }
-
-    @EventListener
-    public void printApplicationUrl(final ApplicationStartedEvent event) {
-        LoggerFactory.getLogger(SmartBudgetApplication.class).info("Application started at "
-                + "http://localhost:"
-                + environment.getProperty("local.server.port")
-                + Strings.nullToEmpty(environment.getProperty("server.servlet.context-path")));
-    }
 }

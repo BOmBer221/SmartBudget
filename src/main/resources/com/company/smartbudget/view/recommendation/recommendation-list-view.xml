@@ -7,7 +7,9 @@
         <collection id="recommendationsDc"
                     class="com.company.smartbudget.entity.Recommendation">
             <fetchPlan extends="_base">
-                <property name="target_id" fetchPlan="_instance_name"/>
+                <property name="target_id" fetchPlan="_instance_name">
+                    <property name="description"/>
+                </property>
             </fetchPlan>
             <loader id="recommendationsDl" readOnly="true">
                 <query>
@@ -15,79 +17,34 @@
                 </query>
             </loader>
         </collection>
-        <instance id="recommendationDc"
-                  class="com.company.smartbudget.entity.Recommendation">
-            <fetchPlan extends="_base">
-                <property name="target_id" fetchPlan="_instance_name"/>
-            </fetchPlan>
-            <loader id="recommendationDl"/>
-        </instance>
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
         <urlQueryParameters>
-            <genericFilter component="genericFilter"/>
-            <pagination component="pagination"/>
         </urlQueryParameters>
     </facets>
     <actions>
         <action id="selectAction" type="lookup_select"/>
         <action id="discardAction" type="lookup_discard"/>
     </actions>
-    <layout padding="false">
-        <formLayout id="layoutWrapper" classNames="master-detail-layout" height="100%">
-            <vbox id="listLayout" height="100%">
-                <genericFilter id="genericFilter"
-                               dataLoader="recommendationsDl">
-                    <properties include=".*"/>
-                </genericFilter>
-                <hbox id="buttonsPanel" classNames="buttons-panel">
-                    <button id="createButton" action="recommendationsDataGrid.createAction"/>
-                    <button id="editButton" action="recommendationsDataGrid.editAction"/>
-                    <button id="removeButton" action="recommendationsDataGrid.removeAction"/>
-                    <simplePagination id="pagination" dataLoader="recommendationsDl"/>
-                </hbox>
-                <dataGrid id="recommendationsDataGrid"
-                          width="100%"
-                          minHeight="20em"
-                          dataContainer="recommendationsDc"
-                          columnReorderingAllowed="true">
-                    <actions>
-                        <action id="createAction" type="list_create"/>
-                        <action id="editAction" type="list_edit"/>
-                        <action id="removeAction" type="list_remove"/>
-                    </actions>
-                    <columns resizable="true">
-                        <column property="target_id"/>
-                        <column property="description"/>
-                        <column property="createDate"/>
-                    </columns>
-                </dataGrid>
-                <hbox id="lookupActions" visible="false">
-                    <button id="selectButton" action="selectAction"/>
-                    <button id="discardButton" action="discardAction"/>
-                </hbox>
-            </vbox>
-            <vbox id="detailsLayout" height="100%">
-                <formLayout id="form" dataContainer="recommendationDc">
-                    <responsiveSteps>
-                        <responsiveStep minWidth="0" columns="1"/>
-                        <responsiveStep minWidth="40em" columns="2"/>
-                    </responsiveSteps>
-                    <entityPicker id="target_idField" property="target_id">
-                        <actions>
-                            <action id="entityLookupAction" type="entity_lookup"/>
-                            <action id="entityClearAction" type="entity_clear"/>
-                        </actions>
-                    </entityPicker>
-                    <textField id="descriptionField" property="description"/>
-                    <dateTimePicker id="createDateField" property="createDate"/>
-                </formLayout>
-                <hbox id="detailActions">
-                    <button id="saveButton" text="msg:///actions.Save" icon="CHECK" themeNames="primary"/>
-                    <button id="cancelButton" text="msg:///actions.Cancel" icon="BAN"/>
-                </hbox>
-            </vbox>
-        </formLayout>
+    <layout>
+        <dataGrid id="recommendationsDataGrid"
+                  width="100%"
+                  minHeight="20em"
+                  dataContainer="recommendationsDc"
+                  columnReorderingAllowed="true">
+            <actions>
+                <action id="editAction" type="list_edit"/>
+            </actions>
+            <columns resizable="true">
+                <column property="target_id"/>
+                <column property="description"/>
+                <column property="createDate"/>
+            </columns>
+        </dataGrid>
+        <hbox id="lookupActions" visible="false">
+            <button id="selectButton" action="selectAction"/>
+            <button id="discardButton" action="discardAction"/>
+        </hbox>
     </layout>
 </view>
